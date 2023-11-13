@@ -1,8 +1,15 @@
 package com.example.cv.services;
 
 import com.example.cv.dto.CvPersonalInfoDTO;
+import com.example.cv.dto.CvSkillDTO;
 import com.example.cv.entities.Cv;
+import com.example.cv.entities.Cv_Skill;
+import com.example.cv.entities.NiveauSkill;
+import com.example.cv.entities.Skill;
 import com.example.cv.repositories.Cv_Repository;
+import com.example.cv.repositories.Cv_Skill_Repository;
+import com.example.cv.repositories.NiveauSkill_Repository;
+import com.example.cv.repositories.Skill_Repository;
 
 import java.util.Date;
 
@@ -14,6 +21,16 @@ public class Cv_Service {
 
     @Autowired // @Autowired kay3ni Spring ghadi ydakhal lina instance dyal Cv_Repository automatiquement. dependency injection
     Cv_Repository cvRepository;
+
+    @Autowired
+    private Skill_Repository skillRepository;
+
+    @Autowired
+    private NiveauSkill_Repository niveauSkillRepository;
+
+    @Autowired
+    private Cv_Skill_Repository cvSkillRepository;
+
 
     public Cv createCv(CvPersonalInfoDTO cvPersonalInfo) {
         Cv newCv = new Cv(); // Khliqin instance jdida mn class Cv.
@@ -32,4 +49,23 @@ public class Cv_Service {
         return cvRepository.save(newCv); // Save l newCv f database w returniha.
     }
 
+    /**
+     * Had method bghina nzidu biha skill l chi CV.
+     * @param cvId Hadi hiya l ID dyal CV li bghina nzidu liha skill.
+     * @param cvSkillDTO DTO fih l ID dyal skill w l ID dyal niveauSkill.
+     * @return L objet Cv_Skill mli tsave f database.
+     */
+    public Cv_Skill addSkillToCv(Long cvId, CvSkillDTO cvSkillDTO) {
+        Cv cv = cvRepository.findById(cvId).orElseThrow(() -> new RuntimeException("CV not found"));         // Qaleb 3la CV b id. Ila ma lqitihach, khrej exception.
+        Skill skill = skillRepository.findById(cvSkillDTO.getSkill_ID()).orElseThrow(() -> new RuntimeException("Skill not found"));        // Qaleb 3la skill b id dyalha. Ila ma lqitihach, khrej exception.
+        NiveauSkill niveauSkill = niveauSkillRepository.findById(cvSkillDTO.getNiveauSkill_ID()).orElseThrow(() -> new RuntimeException("NiveauSkill not found"));
+
+        // Khleq objet jdida Cv_Skill o setti cv, skill, w niveauSkill li jibo mn database.
+        Cv_Skill cvSkill = new Cv_Skill();
+        cvSkill.setCv(cv);
+        cvSkill.setSkill(skill);
+        cvSkill.setNiveauSkill(niveauSkill);
+
+        return cvSkillRepository.save(cvSkill);        // Save l objet Cv_Skill f database o rje3ha.
+    }
 }
