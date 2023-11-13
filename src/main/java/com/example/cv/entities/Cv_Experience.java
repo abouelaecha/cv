@@ -12,7 +12,7 @@ import java.util.Date;
 public class Cv_Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Cvs_Experiences_ID;
+    private Long Cv_Experience_ID;
 
     @ManyToOne
     @JoinColumn(name = "Cv_ID")
@@ -20,8 +20,9 @@ public class Cv_Experience {
 
     @ManyToOne
     @JoinColumn(name ="Company_ID")
-    private Companie companie;
-    private String Description;
+    private Company Company;
+
     private Date Date_Debut;
     private Date Date_Fin;
+    private String Description;
 }

@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Niveaux_Formations")
-public class Niveau_Formation {
+@Table(name = "Countries")
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Niveau_ID;
-    private String Niveau;
+    private Long Country_ID;
+    private String Country_Name;
 }

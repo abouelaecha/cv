@@ -4,13 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Cvs")
+@Table(name = "cvs")
 
 public class Cv {
     @Id
@@ -19,21 +17,23 @@ public class Cv {
 
     @ManyToOne
     @JoinColumn(name = "User_ID")
-
     private User user;
 
-    @OneToMany(mappedBy = "Cv")
+    @OneToMany(mappedBy = "cv") // kola cv 3ando bzaf dyal cv_certificates
+    private List<Cv_Experience> cvExperiences;
+
+    @OneToMany(mappedBy = "Cv") // kola cv 3ando bzaf dyal cv_skill
     private List<Cv_Skill> cvSkills;
 
-    @ManyToMany
-    @JoinTable(
-            name = "cv_skill",
-            joinColumns = @JoinColumn(name = "Cv_ID"),
-            inverseJoinColumns = @JoinColumn(name = "Skill_ID")
-    )
-    private Set<Cv> cvSet = new HashSet<>();
+    @OneToMany(mappedBy = "cv")
+    private List<Cv_Formation> cvFormations;
+
+    @OneToMany(mappedBy = "cv")
+    private List<Cv_Certificate> cvCertificates;
+
+
     private String Nom;
-    private String Prénom;
+    private String Prenom;
     private Date Date_de_naissance;
     private String Email_1;
     private String Email_2;

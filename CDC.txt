@@ -26,3 +26,13 @@ service:
 
 repository madakhlch fih logique dyal application
 service -> logique dyal application dakhal
+
+
+
+!!!!!!!!!!!!!!!! IMPORTANT 
+// galik adil khassek 5 services
+// 1 bach tsajal les infos personneles 
+// 2 bach tsajl experiences
+// 3 bach tsajal skills
+// 4 bach tsajal formations
+// 5 bach tsajal certificates

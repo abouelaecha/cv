@@ -10,9 +10,10 @@ public class Cv_Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Cvs_Languages_ID;
+    
     @ManyToOne
     @JoinColumn(name = "Cv_ID")
-    private Cv cvs;
+    private Cv cv;
 
     @ManyToOne
     @JoinColumn(name = "Language_ID")
@@ -20,6 +21,6 @@ public class Cv_Language {
 
     @ManyToOne
     @JoinColumn(name ="niveaux_ID")
-    private Niveaux_Language niveauxLanguage;
+    private NiveauLanguage niveauLanguage;
 
 }

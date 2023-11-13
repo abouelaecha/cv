@@ -7,20 +7,21 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "Cvs_Skills")
-public class Cv_Skill {
+public class Cv_Skill { // f Java class khassha tkoun CamelCase
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Cv_Skills_ID;
+    private Long Cv_Skill_ID; // f Java variable khassha tkoun camelCase
+    
     @ManyToOne
     @JoinColumn(name = "Cv_ID")
-    private Cv cvs;
+    private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name = "Skiil_ID")
-    private Skill skills;
+    @JoinColumn(name = "Skill_ID")
+    private Skill skill;
 
     @ManyToOne
-    @JoinColumn(name ="niveaux_ID")
-    private Niveau_Skill niveauxSkills;
+    @JoinColumn(name ="niveauSkill_ID")
+    private NiveauSkill niveauSkill;
 
 }

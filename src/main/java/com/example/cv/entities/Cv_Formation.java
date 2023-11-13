@@ -11,21 +11,27 @@ import java.util.Date;
 public class Cv_Formation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Cvs_Formations_ID;
-    private String Description;
+    private Long Cv_Formation_ID;
+
     @ManyToOne
-    @JoinColumn(name ="Niveau_ID")
-    private Niveau_Formation niveau;
+    @JoinColumn(name ="NiveauFormation_ID")
+    private NiveauFormation niveauFormation;
+    
 
     @ManyToOne
     @JoinColumn(name = "Mention_ID")
     private Mention mention;
 
     @ManyToOne
-    @JoinColumn(name = "Ecole_ID")
+    @JoinColumn(name = "Ecole_ID") 
     private Ecole ecole;
+
+    @ManyToOne
+    @JoinColumn(name = "Country_ID") 
+    private Country country;
+
 
     private Date Date_Debut;
     private Date Date_Fin;
-
+    private String Description;
 }
