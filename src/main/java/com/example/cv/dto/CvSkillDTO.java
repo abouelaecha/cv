@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CvSkillDTO {
-    private Long skill_ID;
-    private Long niveauSkill_ID;    
+    private Long skillID;
+    private Long niveauSkillID;    
 }

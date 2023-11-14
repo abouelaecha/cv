@@ -8,11 +8,11 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Cvs_Experiences")
-public class Cv_Experience {
+@Table(name = "CVS_EXPERIENCES")
+public class CvExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Cv_Experience_ID;
+    private Long cvExperienceID;
 
     @ManyToOne
     @JoinColumn(name = "Cv_ID")
@@ -20,9 +20,9 @@ public class Cv_Experience {
 
     @ManyToOne
     @JoinColumn(name ="Company_ID")
-    private Company Company;
+    private Company company;
 
-    private Date Date_Debut;
-    private Date Date_Fin;
-    private String Description;
+    private Date dateDebut;
+    private Date dateFin;
+    private String description;
 }

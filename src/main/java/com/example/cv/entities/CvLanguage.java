@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Cvs_Languages")
-public class Cv_Language {
+@Table(name = "CVS_LANGUAGES")
+public class CvLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Cvs_Languages_ID;
+    private Long cvLanguagesID;
     
     @ManyToOne
     @JoinColumn(name = "Cv_ID")

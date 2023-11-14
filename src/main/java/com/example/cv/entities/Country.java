@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Countries")
+@Table(name = "COUNTRIES")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Country_ID;
-    private String Country_Name;
+    private Long countryID;
+    private String countryName;
 }

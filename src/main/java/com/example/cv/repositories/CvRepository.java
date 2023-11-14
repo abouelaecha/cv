@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 // import java.util.List;
 
-public interface Cv_Repository extends JpaRepository<Cv, Long> {
+public interface CvRepository extends JpaRepository<Cv, Long> {
     // List<Cv>finByUserId(long User_ID);
     // @Query("SELECT cv FROM Cv cv " +
     //         "JOIN cv.cvSkills pivot " +

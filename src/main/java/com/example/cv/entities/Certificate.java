@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Certificates")
+@Table(name = "CERTIFICATES")
 public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Certificate_ID;
-    private String Certificate_Name;
-    private String Organisation;
-    private String Description;
+    private Long certificateID;
+    private String certificateName;
+    private String organisation;
+    private String description;
 }

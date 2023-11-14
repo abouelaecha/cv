@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Skills")
+@Table(name = "SKILLS")
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Skill_ID;
+    private Long skillID;
 
-    private String Skill_Name;
+    private String skillName;
 }
 

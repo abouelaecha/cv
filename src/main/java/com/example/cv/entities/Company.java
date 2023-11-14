@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Companies")
+@Table(name = "COMPANIES")
 public class Company {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private Long Company_ID;
-    private String Company_Name;
-    private String Address;
-    private String Tel;
+    private Long companyID;
+    private String companyName;
+    private String address;
+    private String tel;
 }

@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Mentions")
+@Table(name = "MENTIONS")
 public class Mention {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Mention_ID;
-    private String Mention_Name;
+    private Long mentionID;
+    private String mentionName;
 }

@@ -5,10 +5,10 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Languages")
+@Table(name = "LANGUAGES")
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Language_ID;
-    private String Language_Name;
+    private Long languageID;
+    private String languageName;
 }

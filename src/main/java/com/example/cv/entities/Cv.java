@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "cvs")
+@Table(name = "CVS")
 
 public class Cv {
     @Id
@@ -19,26 +19,26 @@ public class Cv {
     @JoinColumn(name = "User_ID")
     private User user;
 
-    @OneToMany(mappedBy = "cv")
-    private List<Cv_Experience> cvExperiences;
+    @OneToMany(mappedBy = "cv") // kola cv 3ando bzaf dyal cv_certificates
+    private List<CvExperience> cvExperiences;
 
-    @OneToMany(mappedBy = "Cv")
-    private List<Cv_Skill> cvSkills;
-
-    @OneToMany(mappedBy = "cv")
-    private List<Cv_Formation> cvFormations;
+    @OneToMany(mappedBy = "Cv") // kola cv 3ando bzaf dyal cv_skill
+    private List<CvSkill> cvSkills;
 
     @OneToMany(mappedBy = "cv")
-    private List<Cv_Certificate> cvCertificates;
+    private List<CvFormation> cvFormations;
+
+    @OneToMany(mappedBy = "cv")
+    private List<CvCertificate> cvCertificates;
 
 
-    private String Nom;
-    private String Prenom;
-    private Date Date_de_naissance;
-    private String Email_1;
-    private String Email_2;
-    private String Tel_1;
-    private String Tel_2;
-    private Date Created_At;
-    private Date Updated_At;
+    private String nom;
+    private String prenom;
+    private Date dateDeNaissance;
+    private String email1;
+    private String email2;
+    private String tel1;
+    private String tel2;
+    private Date createdAt;
+    private Date updatedAt;
 }

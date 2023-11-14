@@ -7,11 +7,11 @@ import lombok.Data;
 
 @Data
 public class CvPersonalInfoDTO {
-    private String Nom;
-    private String Prenom;
-    private Date Date_de_naissance;
-    private String Email_1;
-    private String Email_2;
-    private String Tel_1;
-    private String Tel_2;
+    private String nom;
+    private String prenom;
+    private Date dateDeNaissance;
+    private String email1;
+    private String email2;
+    private String tel1;
+    private String tel2;
 }

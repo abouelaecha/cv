@@ -6,22 +6,17 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Cvs_Skills")
-public class Cv_Skill {
+@Table(name = "CVS_CERTIFICATES")
+public class CvCertificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Cv_Skill_ID;
-    
+    private Long cvCertificateID;
+
     @ManyToOne
     @JoinColumn(name = "Cv_ID")
     private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name = "Skill_ID")
-    private Skill skill;
-
-    @ManyToOne
-    @JoinColumn(name ="niveauSkill_ID")
-    private NiveauSkill niveauSkill;
-
+    @JoinColumn(name = "Certificate_ID")
+    private Certificate certificate;
 }

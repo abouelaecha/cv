@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CvExperienceDTO {
-    private Long Company_ID;
+    private Long companyID;
 
 }
