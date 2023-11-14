@@ -7,10 +7,10 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "Cvs_Skills")
-public class Cv_Skill { // f Java class khassha tkoun CamelCase
+public class Cv_Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Cv_Skill_ID; // f Java variable khassha tkoun camelCase
+    private Long Cv_Skill_ID;
     
     @ManyToOne
     @JoinColumn(name = "Cv_ID")

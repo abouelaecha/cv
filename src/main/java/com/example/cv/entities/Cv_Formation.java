@@ -14,6 +14,10 @@ public class Cv_Formation {
     private Long Cv_Formation_ID;
 
     @ManyToOne
+    @JoinColumn(name = "Cv_ID")
+    private  Cv cv;
+
+    @ManyToOne
     @JoinColumn(name ="NiveauFormation_ID")
     private NiveauFormation niveauFormation;
     

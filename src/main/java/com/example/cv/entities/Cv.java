@@ -19,10 +19,10 @@ public class Cv {
     @JoinColumn(name = "User_ID")
     private User user;
 
-    @OneToMany(mappedBy = "cv") // kola cv 3ando bzaf dyal cv_certificates
+    @OneToMany(mappedBy = "cv")
     private List<Cv_Experience> cvExperiences;
 
-    @OneToMany(mappedBy = "Cv") // kola cv 3ando bzaf dyal cv_skill
+    @OneToMany(mappedBy = "Cv")
     private List<Cv_Skill> cvSkills;
 
     @OneToMany(mappedBy = "cv")
