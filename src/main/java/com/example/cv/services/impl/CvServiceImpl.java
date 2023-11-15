@@ -1,4 +1,4 @@
-package com.example.cv.services;
+package com.example.cv.services.impl;
 
 import com.example.cv.dto.CvExperienceDTO;
 import com.example.cv.dto.CvFormationDTO;
@@ -30,6 +30,7 @@ import com.example.cv.repositories.NiveauFormationRepository;
 
 import java.util.Date;
 
+import com.example.cv.services.CvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +38,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CvServiceImpl implements CvService {
 
-    
-    @Autowired // @Autowired kay3ni Spring ghadi ydakhal lina instance dyal Cv_Repository automatiquement. dependency injection
+
+    @Autowired
     CvRepository cvRepository;
 
     @Autowired
@@ -74,44 +75,38 @@ public class CvServiceImpl implements CvService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    
+
     @Override
     public Cv createCv(CvPersonalInfoDTO cvPersonalInfo) {
-        Cv newCv = new Cv(); // Khliqin instance jdida mn class Cv.
+        Cv newCv = new Cv();
 
-        // Hna kan3amro l'informations dyal newCv mn cvPersonalInfo.
-        newCv.setNom(cvPersonalInfo.getNom()); // Dkhel l ism.
-        newCv.setPrenom(cvPersonalInfo.getPrenom()); // Dkhel l ism l9dim.
-        newCv.setDateDeNaissance(cvPersonalInfo.getDateDeNaissance()); // Dkhel date dyal twalid.
-        newCv.setEmail1(cvPersonalInfo.getEmail1()); // Dkhel email l'awal.
-        newCv.setEmail2(cvPersonalInfo.getEmail2()); // Dkhel email tani ila kan.
-        newCv.setTel1(cvPersonalInfo.getTel1()); // Dkhel raqm telifon l'awal.
-        newCv.setTel2(cvPersonalInfo.getTel2()); // Dkhel raqm telifon tani ila kan.
-        newCv.setCreatedAt(new Date()); // Dkhel date dyal creation.
-        newCv.setUpdatedAt(new Date()); // Dkhel date dyal last update.
 
-        return cvRepository.save(newCv); // Save l newCv f database w returniha.
+        newCv.setNom(cvPersonalInfo.getNom());
+        newCv.setPrenom(cvPersonalInfo.getPrenom());
+        newCv.setDateDeNaissance(cvPersonalInfo.getDateDeNaissance());
+        newCv.setEmail1(cvPersonalInfo.getEmail1());
+        newCv.setEmail2(cvPersonalInfo.getEmail2());
+        newCv.setTel1(cvPersonalInfo.getTel1());
+        newCv.setTel2(cvPersonalInfo.getTel2());
+        newCv.setCreatedAt(new Date());
+        newCv.setUpdatedAt(new Date());
+
+        return cvRepository.save(newCv);
     }
 
-    /**
-     * Had method bghina nzidu biha skill l chi CV.
-     * @param cvId Hadi hiya l ID dyal CV li bghina nzidu liha skill.
-     * @param cvSkillDTO DTO fih l ID dyal skill w l ID dyal niveauSkill.
-     * @return L objet Cv_Skill mli tsave f database.
-     */
     @Override
     public CvSkill addSkillToCv(Long cvId, CvSkillDTO cvSkillDTO) {
-        Cv cv = cvRepository.findById(cvId).orElseThrow(() -> new RuntimeException("CV not found"));         // Qaleb 3la CV b id. Ila ma lqitihach, khrej exception.
-        Skill skill = skillRepository.findById(cvSkillDTO.getSkillID()).orElseThrow(() -> new RuntimeException("Skill not found"));        // Qaleb 3la skill b id dyalha. Ila ma lqitihach, khrej exception.
+        Cv cv = cvRepository.findById(cvId).orElseThrow(() -> new RuntimeException("CV not found"));
+        Skill skill = skillRepository.findById(cvSkillDTO.getSkillID()).orElseThrow(() -> new RuntimeException("Skill not found"));
         NiveauSkill niveauSkill = niveauSkillRepository.findById(cvSkillDTO.getNiveauSkillID()).orElseThrow(() -> new RuntimeException("NiveauSkill not found"));
 
-        // Khleq objet jdida Cv_Skill o setti cv, skill, w niveauSkill li jibo mn database.
         CvSkill cvSkill = new CvSkill();
+
         cvSkill.setCv(cv);
         cvSkill.setSkill(skill);
         cvSkill.setNiveauSkill(niveauSkill);
 
-        return cvSkillRepository.save(cvSkill);        // Save l objet Cv_Skill f database o rje3ha.
+        return cvSkillRepository.save(cvSkill);
     }
 
     @Override
@@ -134,7 +129,9 @@ public class CvServiceImpl implements CvService {
         Mention mention = mentionRepository.findById(cvFormationDTO.getMentionID()).orElseThrow(() -> new RuntimeException("Mention not found"));
         NiveauFormation niveauFormation = niveauFormationRepository.findById(cvFormationDTO.getNiveauFormationID()).orElseThrow(() -> new RuntimeException("NiveauFormation not found"));
         Country country = countryRepository.findById(cvFormationDTO.getCountryID()).orElseThrow(() -> new RuntimeException("Country not found"));
+
         CvFormation cvFormation = new CvFormation();
+
         cvFormation.setCv(cv);
         cvFormation.setEcole(ecole);
         cvFormation.setMention(mention);
