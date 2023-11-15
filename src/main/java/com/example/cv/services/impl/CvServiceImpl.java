@@ -1,32 +1,8 @@
 package com.example.cv.services.impl;
 
-import com.example.cv.dto.CvExperienceDTO;
-import com.example.cv.dto.CvFormationDTO;
-import com.example.cv.dto.CvPersonalInfoDTO;
-import com.example.cv.dto.CvSkillDTO;
-import com.example.cv.entities.Company;
-import com.example.cv.entities.Country;
-import com.example.cv.entities.Cv;
-import com.example.cv.entities.CvExperience;
-import com.example.cv.entities.CvFormation;
-import com.example.cv.entities.CvSkill;
-import com.example.cv.entities.Ecole;
-import com.example.cv.entities.Mention;
-import com.example.cv.entities.NiveauFormation;
-import com.example.cv.entities.NiveauSkill;
-import com.example.cv.entities.Skill;
-import com.example.cv.repositories.CompanyRepository;
-import com.example.cv.repositories.CountryRepository;
-import com.example.cv.repositories.CvEperienceRepository;
-import com.example.cv.repositories.CvRepository;
-import com.example.cv.repositories.CvSkillRepository;
-import com.example.cv.repositories.NiveauSkillRepository;
-import com.example.cv.repositories.SkillRepository;
-
-import com.example.cv.repositories.CvFormationRepository;
-import com.example.cv.repositories.EcoleRepository;
-import com.example.cv.repositories.MentionRepository;
-import com.example.cv.repositories.NiveauFormationRepository;
+import com.example.cv.dto.*;
+import com.example.cv.entities.*;
+import com.example.cv.repositories.*;
 
 import java.util.Date;
 
@@ -75,11 +51,24 @@ public class CvServiceImpl implements CvService {
     @Autowired
     private CompanyRepository companyRepository;
 
+    @Autowired
+    private CertificateRepository certificateRepository;
+
+    @Autowired
+    private CvCertificateRepository cvCertificateRepository;
+
+    @Autowired
+    private CvLanguageRepository cvLanguageRepository;
+    @Autowired
+    private LanguageRepository languageRepository;
+
+    @Autowired
+    private NiveauLanguageRepository niveauLanguageRepository;
+
 
     @Override
     public Cv createCv(CvPersonalInfoDTO cvPersonalInfo) {
         Cv newCv = new Cv();
-
 
         newCv.setNom(cvPersonalInfo.getNom());
         newCv.setPrenom(cvPersonalInfo.getPrenom());
@@ -107,6 +96,21 @@ public class CvServiceImpl implements CvService {
         cvSkill.setNiveauSkill(niveauSkill);
 
         return cvSkillRepository.save(cvSkill);
+    }
+
+    @Override
+    public CvLanguage addLanguageToCV(Long cvId, CvLanguageDTO cvLanguageDTO) {
+        Cv cv = cvRepository.findById(cvId).orElseThrow(() -> new RuntimeException("CV not found"));
+        Language language = languageRepository.findById(cvLanguageDTO.getLanguageID()).orElseThrow(() -> new RuntimeException("Language not found"));
+        NiveauLanguage niveauLanguage = niveauLanguageRepository.findById(cvLanguageDTO.getNiveauLanguageID()).orElseThrow(() -> new RuntimeException("NiveauLanguage not found"));
+
+        CvLanguage cvLanguage = new CvLanguage();
+
+        cvLanguage.setCv(cv);
+        cvLanguage.setLanguage(language);
+        cvLanguage.setNiveauLanguage(niveauLanguage);
+
+        return cvLanguageRepository.save(cvLanguage);
     }
 
     @Override
@@ -139,5 +143,18 @@ public class CvServiceImpl implements CvService {
         cvFormation.setCountry(country);
 
         return cvFormationRepository.save(cvFormation);
+    }
+
+    @Override
+    public CvCertificate addCertificateToCv(Long cvId, CvCertificateDTO cvCertificateDTO) {
+        Cv cv = cvRepository.findById(cvId).orElseThrow(() -> new RuntimeException("CV not found"));
+        Certificate certificate = certificateRepository.findById(cvCertificateDTO.getCertificateID()).orElseThrow(() -> new RuntimeException("Certificate not found"));
+
+        CvCertificate cvCertificate = new CvCertificate();
+
+        cvCertificate.setCv(cv);
+        cvCertificate.setCertificate(certificate);
+
+        return cvCertificateRepository.save(cvCertificate);
     }
 }

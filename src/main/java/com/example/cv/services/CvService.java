@@ -1,14 +1,7 @@
 package com.example.cv.services;
 
-import com.example.cv.dto.CvExperienceDTO;
-import com.example.cv.dto.CvFormationDTO;
-import com.example.cv.dto.CvPersonalInfoDTO;
-import com.example.cv.dto.CvSkillDTO;
-import com.example.cv.entities.Cv;
-import com.example.cv.entities.CvExperience;
-import com.example.cv.entities.CvFormation;
-import com.example.cv.entities.CvSkill;
-
+import com.example.cv.dto.*;
+import com.example.cv.entities.*;
 
 
 public interface CvService {
@@ -17,10 +10,14 @@ public interface CvService {
     
 
     CvSkill addSkillToCv(Long cvId, CvSkillDTO cvSkillDTO);
-    
+
+    CvLanguage addLanguageToCV(Long cvId, CvLanguageDTO cvLanguageDTO);
 
     CvExperience addExperienceToCv(Long cvId, CvExperienceDTO cvExperienceDTO);
     
 
     CvFormation addFormationToCv(Long cvId, CvFormationDTO cvFormationDTO);
+
+    CvCertificate addCertificateToCv(Long cvId, CvCertificateDTO cvCertificateDTO);
+
 }

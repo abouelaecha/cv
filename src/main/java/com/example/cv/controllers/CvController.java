@@ -1,13 +1,7 @@
 package com.example.cv.controllers;
 
-import com.example.cv.dto.CvExperienceDTO;
-import com.example.cv.dto.CvFormationDTO;
-import com.example.cv.dto.CvPersonalInfoDTO;
-import com.example.cv.dto.CvSkillDTO;
-import com.example.cv.entities.Cv;
-import com.example.cv.entities.CvExperience;
-import com.example.cv.entities.CvFormation;
-import com.example.cv.entities.CvSkill;
+import com.example.cv.dto.*;
+import com.example.cv.entities.*;
 import com.example.cv.services.CvService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +28,12 @@ public class CvController {
         return ResponseEntity.ok(cvSkill);
     }
 
+    @PostMapping("/{cvId}/longuages")
+    public ResponseEntity<CvLanguage> addLanguageToCV(@PathVariable Long cvId, @RequestBody CvLanguageDTO cvLanguageDTO) {
+        CvLanguage cvLanguage = cvService.addLanguageToCV(cvId, cvLanguageDTO);
+        return ResponseEntity.ok(cvLanguage);
+    }
+
     @PostMapping("/{cvId}/experiences")
     public ResponseEntity<CvExperience> addExperienceToCv(@PathVariable Long cvId, @RequestBody CvExperienceDTO cvExperienceDTO) {
         CvExperience cvExperience = cvService.addExperienceToCv(cvId, cvExperienceDTO);     // Dkhul l service b cvId w cvSkillDTO, o cree Cv_Skill jdida.
@@ -50,5 +50,10 @@ public class CvController {
         return ResponseEntity.ok(cvFormation);
     }
 
+    @PostMapping("/{cvId}/certificates")
+    public ResponseEntity<CvCertificate> addCertificateToCv(@PathVariable Long cvId, @RequestBody CvCertificateDTO cvCertificateDTO) {
+        CvCertificate cvCertificate = cvService.addCertificateToCv(cvId, cvCertificateDTO);
+        return ResponseEntity.ok(cvCertificate);
+    }
 }
 
