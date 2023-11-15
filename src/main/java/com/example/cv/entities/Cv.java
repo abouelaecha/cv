@@ -22,7 +22,7 @@ public class Cv {
     @OneToMany(mappedBy = "cv") // kola cv 3ando bzaf dyal cv_certificates
     private List<CvExperience> cvExperiences;
 
-    @OneToMany(mappedBy = "Cv") // kola cv 3ando bzaf dyal cv_skill
+    @OneToMany(mappedBy = "cv") // kola cv 3ando bzaf dyal cv_skill
     private List<CvSkill> cvSkills;
 
     @OneToMany(mappedBy = "cv")

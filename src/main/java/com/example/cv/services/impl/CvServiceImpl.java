@@ -121,7 +121,7 @@ public class CvServiceImpl implements CvService {
         CvExperience cvExperience = new CvExperience();
 
         cvExperience.setCv(cv);
-        cvExperience.setCompany(company);
+        cvExperience.setCompany(company); //TODO zid datedebut datefin etc... (chouf achno kayn f CvExperience)
 
         return cvEperienceRepository.save(cvExperience);
     }
@@ -140,7 +140,9 @@ public class CvServiceImpl implements CvService {
         cvFormation.setEcole(ecole);
         cvFormation.setMention(mention);
         cvFormation.setNiveauFormation(niveauFormation);
-        cvFormation.setCountry(country);
+        cvFormation.setCountry(country); 
+
+        //TODO zid datedebut datefin etc... (chouf achno kayn f CvFormation)
 
         return cvFormationRepository.save(cvFormation);
     }

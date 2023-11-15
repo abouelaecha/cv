@@ -8,19 +8,19 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "CVS_CERTIFICATES")
-public class CvCertificate {
+@Table(name = "CVS_TEMPLATES")
+public class CvTemplate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cvCertificateID;
+    private Long cvTemplateID;
 
     @ManyToOne
     @JoinColumn(name = "Cv_ID")
     private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name = "Certificate_ID")
-    private Certificate certificate;
+    @JoinColumn(name = "Template_ID")
+    private Template template;
 
     private Date dateAcquisition;
 }
