@@ -47,7 +47,6 @@ public class CvServiceImpl implements CvService {
     @Autowired
     private CountryRepository countryRepository;
 
-
     @Autowired
     private CompanyRepository companyRepository;
 
@@ -66,6 +65,13 @@ public class CvServiceImpl implements CvService {
     private NiveauLanguageRepository niveauLanguageRepository;
 
 
+    @Autowired
+    private TemplateRepository templateRepository;
+
+    @Autowired
+    private CvTemplateRepository cvTemplateRepository;
+
+
     @Override
     public Cv createCv(CvPersonalInfoDTO cvPersonalInfo) {
         Cv newCv = new Cv();
@@ -74,9 +80,8 @@ public class CvServiceImpl implements CvService {
         newCv.setPrenom(cvPersonalInfo.getPrenom());
         newCv.setDateDeNaissance(cvPersonalInfo.getDateDeNaissance());
         newCv.setEmail1(cvPersonalInfo.getEmail1());
-        newCv.setEmail2(cvPersonalInfo.getEmail2());
         newCv.setTel1(cvPersonalInfo.getTel1());
-        newCv.setTel2(cvPersonalInfo.getTel2());
+        newCv.setFixmobile(cvPersonalInfo.getFixmobile());
         newCv.setCreatedAt(new Date());
         newCv.setUpdatedAt(new Date());
 
@@ -94,6 +99,8 @@ public class CvServiceImpl implements CvService {
         cvSkill.setCv(cv);
         cvSkill.setSkill(skill);
         cvSkill.setNiveauSkill(niveauSkill);
+        cvSkill.setCreatedAt(new Date());
+        cvSkill.setUpdatedAt(new Date());
 
         return cvSkillRepository.save(cvSkill);
     }
@@ -109,6 +116,9 @@ public class CvServiceImpl implements CvService {
         cvLanguage.setCv(cv);
         cvLanguage.setLanguage(language);
         cvLanguage.setNiveauLanguage(niveauLanguage);
+        cvLanguage.setCreatedAt(new Date());
+        cvLanguage.setUpdatedAt(new Date());
+
 
         return cvLanguageRepository.save(cvLanguage);
     }
@@ -121,7 +131,13 @@ public class CvServiceImpl implements CvService {
         CvExperience cvExperience = new CvExperience();
 
         cvExperience.setCv(cv);
-        cvExperience.setCompany(company); //TODO zid datedebut datefin etc... (chouf achno kayn f CvExperience)
+        cvExperience.setCompany(company);
+        cvExperience.setDateDebut(cvExperienceDTO.getDateDebut());
+        cvExperience.setDateFin(cvExperienceDTO.getDateFin());
+        cvExperience.setDescription(cvExperienceDTO.getDescription());
+        cvExperience.setCreatedAt(new Date());
+        cvExperience.setUpdatedAt(new Date());
+
 
         return cvEperienceRepository.save(cvExperience);
     }
@@ -134,15 +150,21 @@ public class CvServiceImpl implements CvService {
         NiveauFormation niveauFormation = niveauFormationRepository.findById(cvFormationDTO.getNiveauFormationID()).orElseThrow(() -> new RuntimeException("NiveauFormation not found"));
         Country country = countryRepository.findById(cvFormationDTO.getCountryID()).orElseThrow(() -> new RuntimeException("Country not found"));
 
+
+
         CvFormation cvFormation = new CvFormation();
 
         cvFormation.setCv(cv);
         cvFormation.setEcole(ecole);
         cvFormation.setMention(mention);
         cvFormation.setNiveauFormation(niveauFormation);
-        cvFormation.setCountry(country); 
+        cvFormation.setCountry(country);
+        cvFormation.setDateDebut(cvFormationDTO.getDateDebut());
+        cvFormation.setDateFin(cvFormationDTO.getDateFin());
+        cvFormation.setDescription(cvFormationDTO.getDescription());
+        cvFormation.setCreatedAt(new Date());
+        cvFormation.setUpdatedAt(new Date());
 
-        //TODO zid datedebut datefin etc... (chouf achno kayn f CvFormation)
 
         return cvFormationRepository.save(cvFormation);
     }
@@ -156,7 +178,25 @@ public class CvServiceImpl implements CvService {
 
         cvCertificate.setCv(cv);
         cvCertificate.setCertificate(certificate);
+        cvCertificate.setDateAcquisition(cvCertificateDTO.getDateAcquisition());
+        cvCertificate.setCreatedAt(new Date());
+        cvCertificate.setUpdatedAt(new Date());
+
 
         return cvCertificateRepository.save(cvCertificate);
+    }
+
+    @Override
+    public CvTemplate addTemplateToCv(Long cvId, CvTemplateDTO cvTemplateDTO) {
+        Cv cv = cvRepository.findById(cvId).orElseThrow(() -> new RuntimeException("CV not found"));
+        Template template = templateRepository.findById(cvTemplateDTO.getTemplateID()).orElseThrow(() -> new RuntimeException("Template not found"));
+
+        CvTemplate cvTemplate = new CvTemplate();
+
+        cvTemplate.setCv(cv);
+        cvTemplate.setTemplate(template);
+        cvTemplate.setDateAcquisition(cvTemplateDTO.getDateAcquisition());
+
+        return cvTemplateRepository.save(cvTemplate);
     }
 }

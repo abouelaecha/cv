@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "CVS_EXPERIENCES")
+@Table(name = "Cv_Experience")
 public class CvExperience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +25,6 @@ public class CvExperience {
     private Date dateDebut;
     private Date dateFin;
     private String description;
+    private Date createdAt;
+    private Date updatedAt;
 }

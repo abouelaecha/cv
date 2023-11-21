@@ -1,14 +1,14 @@
 package com.example.cv.entities;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "CVS_CERTIFICATES")
+@Table(name = "Cv_Certificat")
 public class CvCertificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,4 +23,6 @@ public class CvCertificate {
     private Certificate certificate;
 
     private Date dateAcquisition;
+    private Date createdAt;
+    private Date updatedAt;
 }

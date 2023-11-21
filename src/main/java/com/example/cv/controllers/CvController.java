@@ -26,48 +26,98 @@ public class CvController {
         return ResponseEntity.ok(cv); // Jawb b ResponseEntity.ok() = HTTP 200 OK + data dyal CV jdida.
     }
 
-    //TODO dir list ila kano bzaff bhal experiences formations etc..
     @PostMapping("/{cvId}/skills")
     public ResponseEntity<List<CvSkill>> addSkillsToCv(@PathVariable Long cvId, @RequestBody List<CvSkillDTO> cvSkillDTOList) {
-        // Khli l lista dyal CvSkill khawya bach n3amroha mn ba3d
+
         List<CvSkill> cvSkills = new ArrayList<>();
-        
-        // Bda loop 3la kol element f list dyal CvSkillDTO
+
         for (CvSkillDTO cvSkillDTO : cvSkillDTOList) {
-            // Dkhul l service b cvId w cvSkillDTO, o cree CvSkill jdida
+
             CvSkill cvSkill = cvService.addSkillToCv(cvId, cvSkillDTO);
-            // Zid CvSkill jdida li tcreate f list cvSkills
+
             cvSkills.add(cvSkill);
         }
-        
-        // Rje3 l list dyal CvSkill li tcreate as a response
+
         return ResponseEntity.ok(cvSkills);
     }
 
 
-    @PostMapping("/{cvId}/longuages")
-    public ResponseEntity<CvLanguage> addLanguageToCV(@PathVariable Long cvId, @RequestBody CvLanguageDTO cvLanguageDTO) {
-        CvLanguage cvLanguage = cvService.addLanguageToCV(cvId, cvLanguageDTO);
-        return ResponseEntity.ok(cvLanguage);
+    @PostMapping("/{cvId}/languages")
+    public ResponseEntity<List<CvLanguage>> addLanguagesToCV(@PathVariable Long cvId, @RequestBody List<CvLanguageDTO> cvLanguageDTOList) {
+        List<CvLanguage> cvLanguages = new ArrayList<>();
+
+        for (CvLanguageDTO cvLanguageDTO : cvLanguageDTOList) {
+
+            CvLanguage cvLanguage = cvService.addLanguageToCV(cvId, cvLanguageDTO);
+
+            cvLanguages.add(cvLanguage);
+        }
+
+
+        return ResponseEntity.ok(cvLanguages);
     }
 
     @PostMapping("/{cvId}/experiences")
-    public ResponseEntity<CvExperience> addExperienceToCv(@PathVariable Long cvId, @RequestBody CvExperienceDTO cvExperienceDTO) {
-        CvExperience cvExperience = cvService.addExperienceToCv(cvId, cvExperienceDTO);     // Dkhul l service b cvId w cvSkillDTO, o cree Cv_Skill jdida.
-        return ResponseEntity.ok(cvExperience);
+    public ResponseEntity<List<CvExperience>> addExperiencesToCv(@PathVariable Long cvId, @RequestBody List<CvExperienceDTO> cvExperienceDTOList) {
+        List<CvExperience> cvExperiences = new ArrayList<>();
 
+        for (CvExperienceDTO cvExperienceDTO : cvExperienceDTOList) {
+
+            CvExperience cvExperience = cvService.addExperienceToCv(cvId, cvExperienceDTO);
+
+            cvExperiences.add(cvExperience);
+        }
+        return ResponseEntity.ok(cvExperiences);
     }
 
     @PostMapping("/{cvId}/formations")
-    public ResponseEntity<CvFormation> addFormationToCv(@PathVariable Long cvId, @RequestBody CvFormationDTO cvFormationDTO) {
-        CvFormation cvFormation = cvService.addFormationToCv(cvId, cvFormationDTO);
-        return ResponseEntity.ok(cvFormation);
+    public ResponseEntity<List<CvFormation>> addFormationsToCv(@PathVariable Long cvId, @RequestBody List<CvFormationDTO> cvFormationDTOList) {
+        List<CvFormation> cvFormations = new ArrayList<>();
+
+        for (CvFormationDTO cvFormationDTO : cvFormationDTOList) {
+
+            CvFormation cvFormation = cvService.addFormationToCv(cvId, cvFormationDTO);
+
+            cvFormations.add(cvFormation);
+        }
+        return ResponseEntity.ok(cvFormations);
     }
 
     @PostMapping("/{cvId}/certificates")
-    public ResponseEntity<CvCertificate> addCertificateToCv(@PathVariable Long cvId, @RequestBody CvCertificateDTO cvCertificateDTO) {
-        CvCertificate cvCertificate = cvService.addCertificateToCv(cvId, cvCertificateDTO);
-        return ResponseEntity.ok(cvCertificate);
+    public ResponseEntity<List<CvCertificate>> addCertificatesToCv(@PathVariable Long cvId, @RequestBody List<CvCertificateDTO> cvCertificateDTOList) {
+        List<CvCertificate> cvCertificates = new ArrayList<>();
+
+        for (CvCertificateDTO cvCertificateDTO : cvCertificateDTOList) {
+
+            CvCertificate cvCertificate = cvService.addCertificateToCv(cvId, cvCertificateDTO);
+
+            cvCertificates.add(cvCertificate);
+        }
+        return ResponseEntity.ok(cvCertificates);
     }
+
+
+    @PostMapping("/{cvId}/template")
+    public ResponseEntity<List<CvTemplate>> addTemplateToCv(@PathVariable Long cvId, @RequestBody List<CvTemplateDTO> cvTemplateDTOList) {
+
+        List<CvTemplate> cvTemplates = new ArrayList<>();
+
+        for (CvTemplateDTO cvTemplateDTO : cvTemplateDTOList) {
+
+            CvTemplate cvTemplate = cvService.addTemplateToCv(cvId, cvTemplateDTO);
+
+            cvTemplates.add(cvTemplate);
+        }
+
+        return ResponseEntity.ok(cvTemplates);
+    }
+
+//    @GetMapping("{cvId}/export")
+//    public ResponseEntity<Cv> exportCv(@PathVariable Long cvId) {
+//
+//        Cv cv = cvService.exportCv(cvId);
+//
+//        return ResponseEntity.ok(cv);
+//    }
 }
 

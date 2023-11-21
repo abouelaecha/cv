@@ -7,18 +7,18 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "CVS_FORMATIONS")
+@Table(name = "Cv_Formation")
 public class CvFormation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cvFormationID;
-    
+
     @ManyToOne
     @JoinColumn(name = "Cv_ID")
     private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name ="NiveauFormation_ID")
+    @JoinColumn(name = "NiveauFormation_ID")
     private NiveauFormation niveauFormation;
 
     @ManyToOne
@@ -26,15 +26,16 @@ public class CvFormation {
     private Mention mention;
 
     @ManyToOne
-    @JoinColumn(name = "Ecole_ID") 
+    @JoinColumn(name = "Ecole_ID")
     private Ecole ecole;
 
     @ManyToOne
-    @JoinColumn(name = "Country_ID") 
+    @JoinColumn(name = "Country_ID")
     private Country country;
-
 
     private Date dateDebut;
     private Date dateFin;
     private String description;
+    private Date createdAt;
+    private Date updatedAt;
 }

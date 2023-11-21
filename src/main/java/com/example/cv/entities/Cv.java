@@ -2,13 +2,14 @@ package com.example.cv.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name = "CVS")
+@Table(name = "CVInfo")
 
 public class Cv {
     @Id
@@ -36,9 +37,9 @@ public class Cv {
     private String prenom;
     private Date dateDeNaissance;
     private String email1;
-    private String email2;
     private String tel1;
-    private String tel2;
+    private String fixmobile;
     private Date createdAt;
     private Date updatedAt;
+
 }

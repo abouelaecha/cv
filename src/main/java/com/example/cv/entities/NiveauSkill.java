@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "NIVEAUSKILLS")
+@Table(name = "Ref_Niveau_Compétence")
 public class NiveauSkill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

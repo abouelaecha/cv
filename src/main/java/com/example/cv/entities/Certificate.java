@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "CERTIFICATES")
+@Table(name = "Ref_Certificat")
 public class Certificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "CVS_TEMPLATES")
+@Table(name = "Cv_Modéle")
 public class CvTemplate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

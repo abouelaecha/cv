@@ -3,9 +3,11 @@ package com.example.cv.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
-@Table(name = "CVS_LANGUAGES")
+@Table(name = "Cv_Langue")
 public class CvLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,5 +24,8 @@ public class CvLanguage {
     @ManyToOne
     @JoinColumn(name ="niveaux_ID")
     private NiveauLanguage niveauLanguage;
+
+    private Date createdAt;
+    private Date updatedAt;
 
 }
