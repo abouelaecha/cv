@@ -9,6 +9,5 @@ public class CvSkillDTO {
     private Long skillID;
     private Long niveauSkillID;
 
-    private Date createdAt;
-    private Date updatedAt;
+
 }

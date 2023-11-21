@@ -9,6 +9,5 @@ import java.util.Date;
 public class CvLanguageDTO {
     private Long languageID;
     private Long niveauLanguageID;
-    private Date createdAt;
-    private Date updatedAt;
+
 }

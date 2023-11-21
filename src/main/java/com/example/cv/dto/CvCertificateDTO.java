@@ -8,7 +8,6 @@ import java.util.Date;
 public class CvCertificateDTO {
     private Long certificateID;
     private Date dateAcquisition;
-    private Date createdAt;
-    private Date updatedAt;
+
 
 }

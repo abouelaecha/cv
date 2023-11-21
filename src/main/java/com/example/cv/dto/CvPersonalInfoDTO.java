@@ -13,6 +13,4 @@ public class CvPersonalInfoDTO {
     private String email1;
     private String tel1;
     private String fixmobile;
-    private Date createdAt;
-    private Date updatedAt;
 }

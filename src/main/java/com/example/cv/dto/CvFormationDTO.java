@@ -14,6 +14,5 @@ public class CvFormationDTO {
     private Date dateDebut;
     private Date dateFin;
     private String description;
-    private Date createdAt;
-    private Date updatedAt;
+
 }
