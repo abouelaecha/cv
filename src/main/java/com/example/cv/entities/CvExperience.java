@@ -15,7 +15,7 @@ public class CvExperience {
     private Long cvExperienceID;
 
     @ManyToOne
-    @JoinColumn(name = "Cv_ID")
+    @JoinColumn(name = "cvID")
     private Cv cv;
 
     @ManyToOne
@@ -25,6 +25,7 @@ public class CvExperience {
     private Date dateDebut;
     private Date dateFin;
     private String description;
+    private String fonction;
     private Date createdAt;
     private Date updatedAt;
 }

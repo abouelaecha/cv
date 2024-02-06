@@ -17,6 +17,14 @@ public interface CvService {
     CvFormation addFormationToCv(Long cvId, CvFormationDTO cvFormationDTO);
 
     CvCertificate addCertificateToCv(Long cvId, CvCertificateDTO cvCertificateDTO);
+
     CvTemplate addTemplateToCv(Long cvId, CvTemplateDTO cvTemplateDTO);
+
+    boolean isEmailAlreadyUsed(String email);
+
+    byte[] exportCvToPdf(Long cvId) throws Exception;
+
+//    void exportJasperReport(HttpServletResponse response) throws JRException, IOException;
+
 //    Cv exportCv(Long cvId);
 }

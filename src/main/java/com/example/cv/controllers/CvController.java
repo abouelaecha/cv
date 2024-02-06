@@ -4,12 +4,26 @@ import com.example.cv.dto.*;
 import com.example.cv.entities.*;
 import com.example.cv.services.CvService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+
+//import exception.ApiException;
+
+//import exception.ApiException;
+
+import exception.ApiException;
+
+import jakarta.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
 
 @RestController
 @RequestMapping("/cv")
@@ -17,28 +31,42 @@ import org.springframework.web.bind.annotation.*;
 
 public class CvController {
 
+
     @Autowired
     private CvService cvService;
 
     @PostMapping
-    public ResponseEntity<Cv> createCv(@RequestBody CvPersonalInfoDTO cvPersonalInfo) {
-        Cv cv = cvService.createCv(cvPersonalInfo); // Khedam b Cv_Service bach ykhalq CV jdida.
-        return ResponseEntity.ok(cv); // Jawb b ResponseEntity.ok() = HTTP 200 OK + data dyal CV jdida.
+    public ResponseEntity<String> createCv(@RequestBody CvPersonalInfoDTO cvPersonalInfo) {
+        if (cvService.isEmailAlreadyUsed(cvPersonalInfo.getEmail())) {
+            return new ResponseEntity<>("Email is already in use", HttpStatus.BAD_REQUEST);
+        }
+        cvService.createCv(cvPersonalInfo);
+        return new ResponseEntity<>("saved successfully", HttpStatus.OK);
+        //    Cv cv1 = cvService.createCv(cvPersonalInfo);
+        //  return ResponseEntity.ok(cv);
     }
 
+
     @PostMapping("/{cvId}/skills")
-    public ResponseEntity<List<CvSkill>> addSkillsToCv(@PathVariable Long cvId, @RequestBody List<CvSkillDTO> cvSkillDTOList) {
-
-        List<CvSkill> cvSkills = new ArrayList<>();
-
-        for (CvSkillDTO cvSkillDTO : cvSkillDTOList) {
-
-            CvSkill cvSkill = cvService.addSkillToCv(cvId, cvSkillDTO);
-
-            cvSkills.add(cvSkill);
+    public ResponseEntity<Object> addSkillsToCv(@PathVariable Long cvId, @RequestBody List<CvSkillDTO> cvSkillDTOList) {
+        try {
+            List<CvSkill> cvSkills = new ArrayList<>();
+            for (CvSkillDTO cvSkillDTO : cvSkillDTOList) {
+                CvSkill cvSkill = cvService.addSkillToCv(cvId, cvSkillDTO);
+                cvSkills.add(cvSkill);
+            }
+            return new ResponseEntity<>("saved successfully", HttpStatus.OK);
+        } catch (ApiException ex) {
+            return ResponseEntity.status(ex.getStatus())
+                    .body(createErrorResponse(ex));
         }
+    }
 
-        return ResponseEntity.ok(cvSkills);
+    private Map<String, Object> createErrorResponse(ApiException ex) {
+        Map<String, Object> errorResponse = new HashMap<>();
+        errorResponse.put("status", ex.getStatus());
+        errorResponse.put("errorMessages", ex.getErrorMessages());
+        return errorResponse;
     }
 
 
@@ -98,26 +126,39 @@ public class CvController {
 
 
     @PostMapping("/{cvId}/template")
-    public ResponseEntity<List<CvTemplate>> addTemplateToCv(@PathVariable Long cvId, @RequestBody List<CvTemplateDTO> cvTemplateDTOList) {
+    public ResponseEntity<CvTemplate> addTemplateToCv(@PathVariable Long cvId, @RequestBody CvTemplateDTO cvTemplateDTO) {
 
-        List<CvTemplate> cvTemplates = new ArrayList<>();
+        CvTemplate cvTemplate = cvService.addTemplateToCv(cvId, cvTemplateDTO);
 
-        for (CvTemplateDTO cvTemplateDTO : cvTemplateDTOList) {
-
-            CvTemplate cvTemplate = cvService.addTemplateToCv(cvId, cvTemplateDTO);
-
-            cvTemplates.add(cvTemplate);
-        }
-
-        return ResponseEntity.ok(cvTemplates);
+        return ResponseEntity.ok(cvTemplate);
     }
 
-//    @GetMapping("{cvId}/export")
-//    public ResponseEntity<Cv> exportCv(@PathVariable Long cvId) {
+//    @GetMapping("/{cvId}/export")
+//    public void createPDF(HttpServletResponse response) throws IOException, JRException {
+//        response.setContentType("application/pdf");
+//        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
+//        String currentDateTime = dateFormatter.format(new Date());
 //
-//        Cv cv = cvService.exportCv(cvId);
+//        String headerKey = "Content-Disposition";
+//        String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
+//        response.setHeader(headerKey, headerValue);
 //
-//        return ResponseEntity.ok(cv);
+//        cvService.exportJasperReport(response);
 //    }
+
+    @GetMapping("/export/{cvId}")
+    public void exportCvToPdf(HttpServletResponse response, @PathVariable Long cvId) {
+        try {
+            byte[] data = cvService.exportCvToPdf(cvId);
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "inline; filename=cv_" + cvId + ".pdf");
+            response.getOutputStream().write(data);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            // Proper exception handling
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error exporting CV", e);
+        }
+    }
+
 }
 

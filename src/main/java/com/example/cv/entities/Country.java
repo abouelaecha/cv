@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Ref_Pays")
+@Table(name = "Ref_Country")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

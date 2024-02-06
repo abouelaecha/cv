@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Ref_Langue")
+@Table(name = "Ref_Language")
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,7 +10,8 @@ public class CvPersonalInfoDTO {
     private String nom;
     private String prenom;
     private Date dateDeNaissance;
-    private String email1;
+    private String email;
     private String tel1;
     private String fixmobile;
+    private String address;
 }

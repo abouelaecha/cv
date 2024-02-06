@@ -7,14 +7,14 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Cv_Langue")
+@Table(name = "Cv_Language")
 public class CvLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cvLanguagesID;
     
     @ManyToOne
-    @JoinColumn(name = "Cv_ID")
+    @JoinColumn(name = "cvID")
     private Cv cv;
 
     @ManyToOne
@@ -23,7 +23,7 @@ public class CvLanguage {
 
     @ManyToOne
     @JoinColumn(name ="niveaux_ID")
-    private NiveauLanguage niveauLanguage;
+    private LevelLanguage levelLanguage;
 
     private Date createdAt;
     private Date updatedAt;

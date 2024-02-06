@@ -8,14 +8,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Cv_Modéle")
+@Table(name = "Cv_Template")
 public class CvTemplate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cvTemplateID;
 
-    @ManyToOne
-    @JoinColumn(name = "Cv_ID")
+    @OneToOne(mappedBy = "cvTemplate")
     private Cv cv;
 
     @ManyToOne
@@ -24,3 +23,7 @@ public class CvTemplate {
 
     private Date dateAcquisition;
 }
+
+// cv 1 - 1 cvTemplate * - 1 ref_template (classique, moderne) !!!!!!!!!!!!!!!
+
+// cv 1 - * cvSkills * - 1 Skills

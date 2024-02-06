@@ -14,12 +14,12 @@ public class CvFormation {
     private Long cvFormationID;
 
     @ManyToOne
-    @JoinColumn(name = "Cv_ID")
+    @JoinColumn(name = "cvID")
     private Cv cv;
 
     @ManyToOne
     @JoinColumn(name = "NiveauFormation_ID")
-    private NiveauFormation niveauFormation;
+    private LevelFormation levelFormation;
 
     @ManyToOne
     @JoinColumn(name = "Mention_ID")
@@ -27,7 +27,7 @@ public class CvFormation {
 
     @ManyToOne
     @JoinColumn(name = "Ecole_ID")
-    private Ecole ecole;
+    private School school;
 
     @ManyToOne
     @JoinColumn(name = "Country_ID")

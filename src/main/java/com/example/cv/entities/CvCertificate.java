@@ -8,14 +8,14 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Cv_Certificat")
+@Table(name = "Cv_Certificate")
 public class CvCertificate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cvCertificateID;
 
     @ManyToOne
-    @JoinColumn(name = "Cv_ID")
+    @JoinColumn(name = "cvID")
     private Cv cv;
 
     @ManyToOne

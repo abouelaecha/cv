@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Cv_Compétence")
+@Table(name = "Cv_Skill")
 public class CvSkill { // f Java class khassha tkoun CamelCase
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class CvSkill { // f Java class khassha tkoun CamelCase
     private Long cvSkillID; // f Java variable khassha tkoun camelCase
     
     @ManyToOne
-    @JoinColumn(name = "Cv_ID")
+    @JoinColumn(name = "cvID")
     private Cv cv;
 
     @ManyToOne
@@ -25,7 +25,7 @@ public class CvSkill { // f Java class khassha tkoun CamelCase
 
     @ManyToOne
     @JoinColumn(name ="niveauSkill_ID")
-    private NiveauSkill niveauSkill;
+    private LevelSkill levelSkill;
 
     private Date createdAt;
     private Date updatedAt;

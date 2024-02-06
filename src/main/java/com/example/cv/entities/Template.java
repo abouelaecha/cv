@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Ref_Modéle")
+@Table(name = "Ref_Template")
 public class Template {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)

@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Ref_Niveau_Langue")
-public class NiveauLanguage {
+@Table(name = "Ref_Level_Language")
+public class LevelLanguage {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
 
