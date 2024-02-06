@@ -275,11 +275,11 @@ public class CvServiceImpl implements CvService {
             // 1. LongText
             // 2. url  /Exemple_A4.jrxml
 
-            JasperReport jasperReport = jasperReportLoader.loadReport("/resources/" + cv_template_data);
+            JasperReport jasperReport = jasperReportLoader.loadReport("/" + cv_template_data);
 
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("Nom", cv.getNom());
-            parameters.put("Prenom", cv.getPrenom());
+            parameters.put("prenom", cv.getPrenom());
+            parameters.put("nom", cv.getNom());
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
 

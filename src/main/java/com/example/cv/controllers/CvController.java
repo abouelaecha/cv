@@ -35,6 +35,11 @@ public class CvController {
     @Autowired
     private CvService cvService;
 
+    @GetMapping("/healthcheck")
+    public ResponseEntity<String> isAlive() {
+        return new ResponseEntity<>("Service is up and running!", HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<String> createCv(@RequestBody CvPersonalInfoDTO cvPersonalInfo) {
         if (cvService.isEmailAlreadyUsed(cvPersonalInfo.getEmail())) {
@@ -146,7 +151,7 @@ public class CvController {
 //        cvService.exportJasperReport(response);
 //    }
 
-    @GetMapping("/export/{cvId}")
+    @GetMapping("{cvId}/export")
     public void exportCvToPdf(HttpServletResponse response, @PathVariable Long cvId) {
         try {
             byte[] data = cvService.exportCvToPdf(cvId);
