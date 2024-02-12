@@ -1,5 +1,6 @@
 package com.example.cv.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -15,6 +16,7 @@ public class CvLanguage {
     
     @ManyToOne
     @JoinColumn(name = "cvID")
+    @JsonIgnore
     private Cv cv;
 
     @ManyToOne

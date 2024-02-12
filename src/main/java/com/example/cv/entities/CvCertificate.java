@@ -1,8 +1,6 @@
 package com.example.cv.entities;
-
-
 import java.util.Date;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,6 +14,7 @@ public class CvCertificate {
 
     @ManyToOne
     @JoinColumn(name = "cvID")
+    @JsonIgnore
     private Cv cv;
 
     @ManyToOne

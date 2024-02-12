@@ -45,9 +45,13 @@ public class Cv {
     @OneToMany(mappedBy = "cv")
     private List<CvCertificate> cvCertificates;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cvID", referencedColumnName = "cv")
-    private CvTemplate cvTemplate; // cv1.cvTemplate.template.templateData
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "cvID", referencedColumnName = "cv")
+//    private CvTemplate cvTemplate; // cv1.cvTemplate.template.templateData
+
+    @ManyToOne
+    @JoinColumn(name = "templateID")
+    private Template template;
 
     @Column(name = "nom")
     private String nom;

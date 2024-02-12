@@ -1,6 +1,6 @@
 package com.example.cv.entities;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -14,6 +14,7 @@ public class CvExperience {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cvExperienceID;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cvID")
     private Cv cv;

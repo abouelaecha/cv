@@ -14,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long User_ID;
-    private Long User_Name;
+    private String User_Name; // hadi khasha tkon String f database badalha dir varchar 
     private String Email;
     private String Password;
 }
