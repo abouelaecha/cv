@@ -11,6 +11,7 @@ public class CvExperienceDTO {
     private Date dateFin;
     private String description;
     private String fonction;
+    private Long countryID;
 
 
 }

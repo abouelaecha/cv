@@ -14,4 +14,7 @@ public class CvPersonalInfoDTO {
     private String tel1;
     private String fixmobile;
     private String address;
+    private String linkedin;
+    private String profile;
+
 }

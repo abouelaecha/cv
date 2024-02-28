@@ -1,6 +1,5 @@
 package com.example.cv.entities;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -10,6 +9,6 @@ import lombok.Data;
 public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ecoleID;
-    private String ecoleName;
+    private Long schoolID;
+    private String schoolName;
 }

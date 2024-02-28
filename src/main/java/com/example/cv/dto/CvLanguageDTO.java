@@ -8,6 +8,6 @@ import java.util.Date;
 @Data
 public class CvLanguageDTO {
     private Long languageID;
-    private Long niveauLanguageID;
+    private Long levelLanguageID;
 
 }

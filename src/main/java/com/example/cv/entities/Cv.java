@@ -1,8 +1,8 @@
 package com.example.cv.entities;
 
+import com.mysql.cj.jdbc.Blob;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Base64;
 import java.util.Date;
@@ -40,10 +40,19 @@ public class Cv {
     private List<CvSkill> cvSkills;
 
     @OneToMany(mappedBy = "cv")
+    private List<CvLanguage> cvLanguages;
+
+    @OneToMany(mappedBy = "cv")
+    private List<CvHobby> cvHobbies;
+
+    @OneToMany(mappedBy = "cv")
     private List<CvFormation> cvFormations;
 
     @OneToMany(mappedBy = "cv")
     private List<CvCertificate> cvCertificates;
+
+    @OneToMany(mappedBy = "cv")
+    private List<CvLanguageTitle> cvLanguageTitles;
 
 //    @OneToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "cvID", referencedColumnName = "cv")
@@ -53,12 +62,25 @@ public class Cv {
     @JoinColumn(name = "templateID")
     private Template template;
 
+
+
     @Column(name = "nom")
     private String nom;
     @Column(name = "prenom")
     private String prenom;
+
+    @Column(name ="profile" )
+    private String profile;
+
+    @Lob
+    @Column(name = "image", columnDefinition="MEDIUMBLOB")
+    private byte[] image;
+
+
+
     @Column(name = "dateDeNaissance")
     private Date dateDeNaissance;
+
     @Column(unique = true)
     private String email;
     @Column(name = "tel1")
@@ -67,6 +89,8 @@ public class Cv {
     private String fixmobile;
     @Column(name = "address")
     private String address;
+    @Column(name="linkedin")
+    private String linkedin;
     @Column(name = "createdAt")
     private Date createdAt;
     @Column(name = "updatedAt")

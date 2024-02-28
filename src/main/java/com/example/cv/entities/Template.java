@@ -8,11 +8,11 @@ import lombok.Data;
 @Table(name = "Ref_Template")
 public class Template {
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long templateID;
 
-    private String templateName;   //templateName
-    private String templateImage;  //templateImage
-    
-    private String templateData;  // .jrxlm
+    private String templateName; // templateName
+    private String templateImage; // templateImage
+
+    private String templateData; // .docx
 }

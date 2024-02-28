@@ -24,7 +24,7 @@ public class CvLanguage {
     private Language language;
 
     @ManyToOne
-    @JoinColumn(name ="niveaux_ID")
+    @JoinColumn(name ="levelLanguage_ID")
     private LevelLanguage levelLanguage;
 
     private Date createdAt;

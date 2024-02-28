@@ -8,29 +8,21 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Cv_Experience")
-public class CvExperience {
+@Table(name = "Cv_LanguageTitle")
+public class CvLanguageTitle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cvExperienceID;
+    private Long cvLanguageTitleID;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cvID")
+    @JsonIgnore
     private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name ="Company_ID")
-    private Company company;
+    @JoinColumn(name = "LanguageTitle_ID")
+    private LanguageTitle languageTitle;
 
-    @ManyToOne
-    @JoinColumn(name = "Country_ID") //todo
-    private Country country;
-
-    private Date dateDebut;
-    private Date dateFin;
-    private String description;
-    private String fonction;
     private Date createdAt;
     private Date updatedAt;
 }

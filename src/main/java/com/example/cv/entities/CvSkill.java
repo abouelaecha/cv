@@ -26,7 +26,7 @@ public class CvSkill { // f Java class khassha tkoun CamelCase
     private Skill skill;
 
     @ManyToOne
-    @JoinColumn(name ="niveauSkill_ID")
+    @JoinColumn(name ="levelSkill_ID")
     private LevelSkill levelSkill;
 
     private Date createdAt;

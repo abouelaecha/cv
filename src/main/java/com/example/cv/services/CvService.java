@@ -2,6 +2,7 @@ package com.example.cv.services;
 
 import com.example.cv.dto.*;
 import com.example.cv.entities.*;
+import com.example.cv.exception.ApiException;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public interface CvService {
     CvSkill addSkillToCv(Long cvId, CvSkillDTO cvSkillDTO);
 
     CvLanguage addLanguageToCV(Long cvId, CvLanguageDTO cvLanguageDTO);
+
+    CvLanguageTitle addLanguageTitleToCV(Long cvId, CvLanguageTitleDTO cvLanguageTitleDTO);
 
     CvExperience addExperienceToCv(Long cvId, CvExperienceDTO cvExperienceDTO);
 
@@ -29,6 +32,10 @@ public interface CvService {
     byte[] exportCvToDocx(Long cvId) throws Exception;
 
     List<Cv> getCvsBySkillId(Long skillId);
+
+    CvHobby addHobbyToCV(Long cvId, CvHobbyDTO cvHobbyDTO);
+
+    void saveCvImage(Long cvId, byte[] imageBytes) throws ApiException;
 
 
 //    void exportJasperReport(HttpServletResponse response) throws JRException, IOException;

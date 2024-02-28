@@ -1,5 +1,6 @@
 package com.example.cv.entities;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -8,29 +9,22 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Cv_Experience")
-public class CvExperience {
+@Table(name = "Cv_Hobby")
+public class CvHobby {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cvExperienceID;
+    private Long cvHobbyID;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cvID")
+    @JsonIgnore
     private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name ="Company_ID")
-    private Company company;
+    @JoinColumn(name = "Hobby_ID")
+    private Hobby hobby;
 
-    @ManyToOne
-    @JoinColumn(name = "Country_ID") //todo
-    private Country country;
-
-    private Date dateDebut;
-    private Date dateFin;
-    private String description;
-    private String fonction;
     private Date createdAt;
     private Date updatedAt;
+
 }

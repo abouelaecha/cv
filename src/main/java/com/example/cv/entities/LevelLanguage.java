@@ -11,7 +11,7 @@ public class LevelLanguage {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
 
-    private Long niveauLanguageID;
-    private String niveauLanguageName;
+    private Long levelLanguageID;
+    private String levelLanguageName;
 
 }

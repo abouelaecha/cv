@@ -20,7 +20,7 @@ public class CvFormation {
     private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name = "NiveauFormation_ID")
+    @JoinColumn(name = "LevelFormation_ID") //todo
     private LevelFormation levelFormation;
 
     @ManyToOne
@@ -28,7 +28,7 @@ public class CvFormation {
     private Mention mention;
 
     @ManyToOne
-    @JoinColumn(name = "Ecole_ID")
+    @JoinColumn(name = "School_ID") //todo
     private School school;
 
     @ManyToOne

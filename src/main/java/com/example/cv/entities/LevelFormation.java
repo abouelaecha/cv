@@ -10,7 +10,7 @@ import lombok.Data;
 public class LevelFormation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long niveauFormationID;
-    private String niveauFormationName;
+    private Long levelFormationID;
+    private String levelFormationName;
 
 }
