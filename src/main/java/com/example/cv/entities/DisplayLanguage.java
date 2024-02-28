@@ -5,11 +5,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Ref_Language_Title")
-public class LanguageTitle {
+@Table(name = "Ref_Display_Language")
+public class DisplayLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long languageTitleID;
+    private Long displayLanguageID;
 
-    private String languageTitle;
+    private String displayLanguageName;
 }

@@ -115,22 +115,32 @@
             }
         }
         @PostMapping("/{cvId}/titles")
-        public ResponseEntity<Object> addLanguageTitleToCV(@PathVariable Long cvId, @RequestBody List<CvLanguageTitleDTO> cvLanguageTitleDTOList) {
+        public ResponseEntity<Object> addDisplayLanguageToCV(@PathVariable Long cvId, @RequestBody CvDisplayLanguageDTO cvDisplayLanguageDTO) {
             try {
-                List<CvLanguageTitle> cvLanguageTitles = new ArrayList<>();
-
-                for (CvLanguageTitleDTO cvLanguageTitleDTO : cvLanguageTitleDTOList) {
-
-                    CvLanguageTitle cvLanguageTitle = cvService.addLanguageTitleToCV(cvId, cvLanguageTitleDTO);
-
-                    cvLanguageTitles.add(cvLanguageTitle);
-                }
-
+                    CvDisplayLanguage cvDisplayLanguage = cvService.addDisplayLanguageToCV(cvId, cvDisplayLanguageDTO);
                 return new ResponseEntity<>("saved successfully", HttpStatus.OK);
             } catch (ApiException ex) {
                 return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
             }
         }
+//        @PostMapping("/{cvId}/titles")
+//        public ResponseEntity<Object> addLanguageTitleToCV(@PathVariable Long cvId, @RequestBody CvDisplayLanguageDTO cvDisplayLanguageDTO) {
+//            try {
+//                List<CvDisplayLanguage> cvDisplayLanguages = new ArrayList<>();
+//
+//                for (CvDisplayLanguageDTO cvDisplayLanguageDTO : cvDisplayLanguageDTO) {
+//
+//                    CvDisplayLanguage cvDisplayLanguage = cvService.addLanguageTitleToCV(cvId, cvDisplayLanguageDTO);
+//
+//                    cvDisplayLanguages.add(cvDisplayLanguage);
+//                }
+//
+//                return new ResponseEntity<>("saved successfully", HttpStatus.OK);
+//            } catch (ApiException ex) {
+//                return ResponseEntity.status(ex.getStatus()).body(ex.getMessage());
+//            }
+//        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // @PostMapping("/{cvId}/languages")
         // public ResponseEntity<Object> addLanguagesToCV(@PathVariable Long cvId,
         // @RequestBody List<CvLanguageDTO> cvLanguageDTOList) {
@@ -222,7 +232,6 @@
         // .body(createErrorResponse(ex));
         // }
         // }
-        // hamza zid les changements f git // man9darch ndirha ana ok
         // @PostMapping("/{cvId}/template")
         // public ResponseEntity<CvTemplate> addTemplateToCv(@PathVariable Long cvId,
         // @RequestBody CvTemplateDTO cvTemplateDTO) {

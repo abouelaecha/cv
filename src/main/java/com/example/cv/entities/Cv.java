@@ -1,6 +1,5 @@
 package com.example.cv.entities;
 
-import com.mysql.cj.jdbc.Blob;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -51,32 +50,24 @@ public class Cv {
     @OneToMany(mappedBy = "cv")
     private List<CvCertificate> cvCertificates;
 
-    @OneToMany(mappedBy = "cv")
-    private List<CvLanguageTitle> cvLanguageTitles;
-
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "cvID", referencedColumnName = "cv")
-//    private CvTemplate cvTemplate; // cv1.cvTemplate.template.templateData
+    @OneToOne(mappedBy = "cv")
+    private CvDisplayLanguage cvDisplayLanguage;
 
     @ManyToOne
     @JoinColumn(name = "templateID")
     private Template template;
-
-
 
     @Column(name = "nom")
     private String nom;
     @Column(name = "prenom")
     private String prenom;
 
-    @Column(name ="profile" )
+    @Column(name = "profile")
     private String profile;
 
     @Lob
-    @Column(name = "image", columnDefinition="MEDIUMBLOB")
+    @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private byte[] image;
-
-
 
     @Column(name = "dateDeNaissance")
     private Date dateDeNaissance;
@@ -89,7 +80,7 @@ public class Cv {
     private String fixmobile;
     @Column(name = "address")
     private String address;
-    @Column(name="linkedin")
+    @Column(name = "linkedin")
     private String linkedin;
     @Column(name = "createdAt")
     private Date createdAt;

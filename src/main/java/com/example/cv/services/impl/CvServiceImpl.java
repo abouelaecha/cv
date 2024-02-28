@@ -44,9 +44,9 @@ public class CvServiceImpl implements CvService {
     @Autowired
     private CvHobbyRepository cvHobbyRepository;
     @Autowired
-    private LanguageTitleRepository languageTitleRepository;
+    private DisplayLanguageRepository displayLanguageRepository;
     @Autowired
-    private CvLanguageTitleRepository cvLanguageTitleRepository;
+    private CvDisplayLanguageRepository cvDisplayLanguageRepository;
 
     @Autowired
     private LevelSkillRepository levelSkillRepository;
@@ -92,8 +92,7 @@ public class CvServiceImpl implements CvService {
     @Autowired
     private TemplateRepository templateRepository;
 
-    // @Autowired
-    // private CvTemplateRepository cvTemplateRepository;
+
 
     public boolean isEmailAlreadyUsed(String email) {
         Optional<Cv> existingUser = cvRepository.findByEmail(email);
@@ -186,6 +185,8 @@ public class CvServiceImpl implements CvService {
         return cvLanguageRepository.save(cvLanguage);
     }
 
+
+
     @Override
     public CvHobby addHobbyToCV(Long cvId, CvHobbyDTO cvHobbyDTO) {
         Cv cv = cvRepository.findById(cvId).orElseThrow(
@@ -203,20 +204,20 @@ public class CvServiceImpl implements CvService {
         return cvHobbyRepository.save(cvHobby);
     }
     @Override
-    public CvLanguageTitle addLanguageTitleToCV(Long cvId, CvLanguageTitleDTO cvLanguageTitleDTO) {
+    public CvDisplayLanguage addDisplayLanguageToCV(Long cvId, CvDisplayLanguageDTO cvDisplayLanguageDTO) {
         Cv cv = cvRepository.findById(cvId).orElseThrow(
                 () -> new ApiException(HttpStatus.NOT_FOUND,
                         Arrays.asList("CV not found with ID:" + cvId)));
-        LanguageTitle languageTitle = languageTitleRepository.findById(cvLanguageTitleDTO.getLanguageTitleID())
+        DisplayLanguage displayLanguage = displayLanguageRepository.findById(cvDisplayLanguageDTO.getDisplayLanguageID())
                 .orElseThrow(() -> new ApiException(HttpStatus.NOT_FOUND,
-                        Arrays.asList("LanguageTitle not found with ID:" + cvLanguageTitleDTO.getLanguageTitleID())));
-        CvLanguageTitle cvLanguageTitle = new CvLanguageTitle();
+                        Arrays.asList("LanguageTitle not found with ID:" + cvDisplayLanguageDTO.getDisplayLanguageID())));
+        CvDisplayLanguage cvDisplayLanguage = new CvDisplayLanguage();
 
-        cvLanguageTitle.setCv(cv);
-        cvLanguageTitle.setLanguageTitle(languageTitle);
-        cvLanguageTitle.setCreatedAt(new Date());
-        cvLanguageTitle.setUpdatedAt(new Date());
-        return cvLanguageTitleRepository.save(cvLanguageTitle);
+        cvDisplayLanguage.setCv(cv);
+        cvDisplayLanguage.setDisplayLanguage(displayLanguage);
+        cvDisplayLanguage.setCreatedAt(new Date());
+        cvDisplayLanguage.setUpdatedAt(new Date());
+        return cvDisplayLanguageRepository.save(cvDisplayLanguage);
     }
 
     @Override
@@ -334,7 +335,7 @@ public class CvServiceImpl implements CvService {
 
             Map<String, String> titlesEn = new HashMap<>();
             titlesEn.put("Contact_title", "Contact");
-            titlesEn.put("Languages_title", "Languages"); //fhamti chno dart ? ???? kat 9dar tktab ?
+            titlesEn.put("Languages_title", "Languages");
             titlesEn.put("Hobbies_title", "Hobbies");
             titlesEn.put("Profile_title", "Profile");
             titlesEn.put("Skill_title", "Skills");
@@ -352,13 +353,18 @@ public class CvServiceImpl implements CvService {
             titlesFr.put("Education_title", "Formation");
             titlesFr.put("Certifications_title", "Certifications");
 
+            Map<String, String> selectedTitles = cv.getCvDisplayLanguage().getDisplayLanguage().getDisplayLanguageName().equals("FR") ? titlesFr : titlesEn;
+            variableMap.putAll(selectedTitles);
 
-            List<CvLanguageTitle> languageTitleList = cv.getCvLanguageTitles();
-            for (CvLanguageTitle languageTitle : languageTitleList) {
-                String title = languageTitle.getLanguageTitle().getLanguageTitle();
-                Map<String, String> selectedTitles = title.equals("FR") ? titlesFr : titlesEn;
-                variableMap.putAll(selectedTitles);
-            }
+            //cv.getCvDisplayLanguage().getDisplayLanguage().getdisplayLanguageName()
+
+
+//            List<CvDisplayLanguage> languageTitleList = cv.getCvLanguageTitles();
+//            for (CvDisplayLanguage languageTitle : languageTitleList) {
+//                String title = languageTitle.getLanguageTitle().getLanguageTitle();
+//                Map<String, String> selectedTitles = title.equals("FR") ? titlesFr : titlesEn;
+//                variableMap.putAll(selectedTitles);
+//            }
 
 
 

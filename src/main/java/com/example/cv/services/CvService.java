@@ -15,7 +15,9 @@ public interface CvService {
 
     CvLanguage addLanguageToCV(Long cvId, CvLanguageDTO cvLanguageDTO);
 
-    CvLanguageTitle addLanguageTitleToCV(Long cvId, CvLanguageTitleDTO cvLanguageTitleDTO);
+
+
+    CvDisplayLanguage addDisplayLanguageToCV(Long cvId, CvDisplayLanguageDTO cvDisplayLanguageDTO);
 
     CvExperience addExperienceToCv(Long cvId, CvExperienceDTO cvExperienceDTO);
 

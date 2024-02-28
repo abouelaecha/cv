@@ -8,20 +8,25 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "Cv_LanguageTitle")
-public class CvLanguageTitle {
+@Table(name = "Cv_DisplayLanguage")
+public class CvDisplayLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cvLanguageTitleID;
 
-    @ManyToOne
-    @JoinColumn(name = "cvID")
+//    @ManyToOne
+//    @JoinColumn(name = "cvID")
+//    @JsonIgnore
+//    private Cv cv;
+
+    @OneToOne
+    @JoinColumn(name = "cvId")
     @JsonIgnore
     private Cv cv;
 
     @ManyToOne
-    @JoinColumn(name = "LanguageTitle_ID")
-    private LanguageTitle languageTitle;
+    @JoinColumn(name = "DisplayLanguage_ID")
+    private DisplayLanguage displayLanguage;
 
     private Date createdAt;
     private Date updatedAt;
